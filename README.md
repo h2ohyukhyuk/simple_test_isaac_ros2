@@ -41,8 +41,8 @@ uv python install 3.12
 ```
 
 ```bash
-mkdir -p ~/venvs/venv-isaacsim/
-cd ~/venvs/venv-isaacsim/
+mkdir -p ~/venvs
+cd ~/venvs
 
 uv venv --python 3.12 --seed venv_isaacsim
 source venv_isaacsim/bin/activate
