@@ -170,31 +170,7 @@ python 03_pick_place.py
 초기화는 현재 실습 환경에서 약 1~2분 걸릴 수 있습니다.
 첫 모델 로딩 시에는 추가 다운로드 시간이 필요할 수 있습니다.
 
-## 5. PyCharm 설정
-
-프로젝트 인터프리터를 다음 기존 가상환경으로 지정합니다.
-
-```text
-/home/j/projects_sim/isaac/env_isaacsim/bin/python
-```
-
-실행 설정의 Working directory는 프로젝트 폴더로 지정합니다.
-다른 사용자 계정이나 경로에서는 실제 설치 경로에 맞게 변경하세요.
-
-Isaac Sim 관련 import는 다음 순서를 유지해야 합니다.
-
-```python
-from isaacsim import SimulationApp
-
-simulation_app = SimulationApp({"headless": False})
-
-# SimulationApp 생성 이후에 import
-from isaacsim.core.api import World
-```
-
-PyCharm의 import 정리 기능이 `isaacsim.core` 또는 `pxr` import를 초기화 코드 위로 이동하지 않도록 주의하세요.
-
-## 6. GPU와 화면 출력
+## 5. GPU와 화면 출력
 
 예제의 GPU 설정은 현재 실습 PC에서 화면을 출력하는 GPU 1에 맞춰져 있습니다.
 
