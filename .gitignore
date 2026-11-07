@@ -1,0 +1,42 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+env_isaacsim/
+
+# IDE settings
+.idea/
+*.iml
+
+# Local environment variables (keep example configuration)
+.env
+.env.*
+!.env.example
+
+# Generated simulation output and logs
+/logs/
+/outputs/
+/captures/
+/recordings/
+/cache/
+*.log
+
+# Python build artifacts
+/build/
+/dist/
+*.egg-info/
+
+# OS temporary files
+.DS_Store
+Thumbs.db
+*~
+*.swp
