@@ -116,10 +116,13 @@ PyCharm 인터프리터도 `/home/j/venvs/venv-isaacsim/bin/python`으로 지정
 
 ```bash
 cd ~/projects_sim
-git clone git@github.com:h2ohyukhyuk/simple_test_isaac_ros2.git
+git clone https://github.com/h2ohyukhyuk/simple_test_isaac_ros2.git
 cd simple_test_isaac_ros2
 
-source ~/projects_sim/isaac/env_isaacsim/bin/activate
+# pycharm 에서 ~/projects_sim/simple_test_isaac_ros2 폴더를 오픈하세요
+# pycharm 에서 python interpreter를 설정하세요
+# ~/venvs/venv-isaacsim/bin/python
+
 python 00_empty.py
 ```
 
