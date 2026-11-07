@@ -107,13 +107,20 @@ python --version
 단독 `pip` 명령 대신 `python -m pip`를 사용해 실행할 Python과 같은 환경을 확인합니다.
 PyCharm 인터프리터도 `/home/j/venvs/venv-isaacsim/bin/python`으로 지정합니다.
 이미 위 환경에 설치가 완료됐다면 다시 설치할 필요가 없습니다.
-### 첫 실행 시 NVIDIA 라이선스 동의
+
+
+
+## 4. 예제 다운로드 및 실행
 
 설치 후 빈 장면 예제를 실행합니다.
 
 ```bash
-/home/j/venvs/venv-isaacsim/bin/python \
-  /home/j/projects_sim/simple_test_isaac_ros2/00_empty.py
+cd ~/projects_sim
+git clone git@github.com:h2ohyukhyuk/simple_test_isaac_ros2.git
+cd simple_test_isaac_ros2
+
+source ~/projects_sim/isaac/env_isaacsim/bin/activate
+python 00_empty.py
 ```
 
 첫 실행 시 터미널 또는 PyCharm 실행 콘솔에 다음 질문이 표시될 수 있습니다.
@@ -129,7 +136,6 @@ Do you accept the EULA? (Yes/No):
 실행 콘솔에 `Yes`를 입력한 뒤 Enter를 누릅니다.
 입력을 기다리는 동안에는 초기화가 진행되지 않으므로, 시뮬레이터 창이 열리지 않으면 콘솔의 질문을 확인하세요.
 
-### 첫 실행은 충분히 기다리세요
 
 첫 실행은 셰이더 컴파일, 확장 모듈 초기화 및 캐시 생성으로 오래 걸릴 수 있습니다.
 창이 늦게 열리거나 잠시 “응답하지 않습니다”가 표시되더라도 바로 종료하지 말고,
@@ -140,18 +146,6 @@ Do you accept the EULA? (Yes/No):
 다만 캐시를 삭제하거나 드라이버·Isaac Sim 버전을 변경한 경우,
 또는 새로운 모델을 처음 불러오는 경우에는 다시 시간이 걸릴 수 있습니다.
 명확한 오류가 반복되거나 로그 진행 없이 장시간 멈춘 경우에는 오류 내용을 확인하세요.
-
-
-## 4. 예제 다운로드 및 실행
-
-```bash
-cd ~/projects_sim
-git clone git@github.com:h2ohyukhyuk/simple_test_isaac_ros2.git
-cd simple_test_isaac_ros2
-
-source ~/projects_sim/isaac/env_isaacsim/bin/activate
-python 00_empty.py
-```
 
 이미 저장소가 있다면 clone을 생략하고 해당 폴더에서 실행하세요.
 SSH clone을 사용하려면 GitHub 계정에 SSH 공개 키가 등록되어 있어야 합니다.
