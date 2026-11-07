@@ -8,7 +8,7 @@ Python 코드로 장면 생성, Franka 로봇 제어, Pick-and-Place 및 역기�
 
 - Ubuntu Linux와 NVIDIA RTX GPU
 - 정상 작동하는 NVIDIA 드라이버 (`nvidia-smi`로 확인)
-- Python **3.12** 및 해당 Python의 `venv` 모듈
+- `uv` (아래 단계에서 설치하며 Python 3.12도 준비할 수 있습니다)
 - 모델을 처음 불러올 때 사용할 인터넷 연결
 
 현재 실습 환경은 Ubuntu 22.04.5 LTS, RTX 3060 12GB 두 장입니다.
@@ -17,34 +17,49 @@ Linux pip 패키지에는 GLIBC 2.35 이상이 필요합니다.
 
 ```bash
 nvidia-smi
-python3.12 --version
 ldd --version
 ```
 
-Python 3.12가 없는 경우 먼저 Python 3.12와 venv를 준비하세요.
-Ubuntu 22.04의 기본 Python 3.10으로는 이 버전을 실행할 수 없습니다.
+Isaac Sim 6.0에는 Python 3.12가 필요합니다. Ubuntu 22.04의 기본 Python 3.10과 별도로 준비합니다.
 
-## 2. 가상환경 생성
+## 2. uv 설치 및 가상환경 생성
+
+`uv`는 Python 버전, 가상환경과 패키지를 관리하는 도구입니다.
+현재 실습 환경도 uv로 생성·설치된 환경입니다. 아래 명령은 새로 설치할 때의 안내이며, 과거 실행 명령을 복원한 기록은 아닙니다.
+
+공식 설치 스크립트로 uv를 설치한 뒤 터미널을 새로 엽니다.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+새 터미널에서 다음을 실행합니다.
+
+```bash
+uv --version
+uv python install 3.12
+```
 
 ```bash
 mkdir -p ~/projects_sim/isaac
 cd ~/projects_sim/isaac
 
-python3.12 -m venv env_isaacsim
+uv venv --python 3.12 --seed env_isaacsim
 source env_isaacsim/bin/activate
-python -m pip install --upgrade pip
 ```
 
 가상환경은 생성한 경로에서 사용하세요. 폴더를 옮기면 활성화 스크립트와 실행 파일의 경로가 맞지 않을 수 있습니다.
 
 ## 3. Isaac Sim 설치
 
-공식 설치 안내의 CUDA 12.8 PyTorch 패키지 경로를 사용하는 예입니다.
-드라이버가 해당 CUDA 런타임을 지원하는지 확인하세요.
+NVIDIA의 Isaac Sim 6.0 pip 설치 안내에는 CUDA 지원 PyTorch를 먼저 설치하는 단계가 있습니다.
+이는 강화학습을 시작하기 위한 추가 단계가 아니라 Isaac Sim의 tensor·GPU 연산 기능 등에 사용하는 의존성을 준비하는 과정입니다.
+현재 환경에서도 `torch 2.11.0+cu128` 설치를 확인했습니다. 아래는 해당 CUDA 12.8 빌드를 설치하는 명령입니다.
+드라이버가 해당 CUDA 런타임을 지원하는지 확인하세요. 이미 설치된 환경에서는 다시 실행할 필요가 없습니다.
 
 ```bash
-python -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
-python -m pip install "isaacsim[all,extscache]==6.0.0.1" --extra-index-url https://pypi.nvidia.com
+uv pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+uv pip install "isaacsim[all,extscache]==6.0.0.1" --extra-index-url https://pypi.nvidia.com
 ```
 
 설치 결과를 확인합니다.
@@ -141,3 +156,5 @@ Isaac Sim 6.0에서는 deprecated 경고가 표시될 수 있으므로,
 - [Isaac Sim 6.0 Python 설치](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/installation/install_python.html)
 - [Isaac Sim 하드웨어·소프트웨어 요구 사항](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/installation/requirements.html)
 - [Standalone Python 예제 목록](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/py/docs/api/source/standalone_examples_list.html)
+
+- [uv 공식 설치 안내](https://docs.astral.sh/uv/getting-started/installation/)
